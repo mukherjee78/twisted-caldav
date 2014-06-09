@@ -161,6 +161,7 @@ module TwistedCaldav
         geo_location  event[:geo_location]
         status        event[:status]
         url           event[:url]
+        rrule         event[:rrule]
       end
       cstring = c.to_ical
       res = nil
@@ -230,6 +231,7 @@ module TwistedCaldav
         url           todo[:url]
         geo           todo[:geo_location]
         status        todo[:status]
+        rrule         todo[:rrule]
       end
       c.todo.uid = uuid
       cstring = c.to_ical
