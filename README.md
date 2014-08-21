@@ -1,6 +1,8 @@
 twisted-caldav
 ==============
 
+[![Gem Version](https://badge.fury.io/rb/twisted-caldav.svg)](http://badge.fury.io/rb/twisted-caldav)
+
 Ruby client for searching, creating, editing calendar and tasks.
 
 Tested with ubuntu based calendar server installation.
