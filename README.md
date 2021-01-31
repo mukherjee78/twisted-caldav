@@ -11,22 +11,30 @@ It is a modified version of another caldav client under MIT license
 
 https://github.com/n8vision/caldav-icloud
 
-##INSTALL
+## Installation
 
+```bash
 gem install 'twisted-caldav'
+```
 
-##USAGE
+## Usage
 
-require ’twisted-caldav'
+```ruby
+require 'twisted-caldav'
 
-u = "user1"
+u = 'user1'
 
-cal = TwistedCaldav::Client.new(:uri => "http://yourserver.com:8008/calendars/users/#{u}/calendar/", :user => u , :password => "xxxxxx")
+cal = TwistedCaldav::Client.new(uri: "http://yourserver.com:8008/calendars/users/#{u}/calendar/", user: u , password: 'xxxxxx')
+```
 
-###FIND EVENTS
+### Find events
 
-result = cal.find_events(:start => "2014-04-01", :end => "2014-04-15")
+```ruby
+result = cal.find_events(start: '2014-04-01', end: '2014-04-15')
+```
 
-###CREATE EVENT
+### Create event
 
-result = cal.create_event(:start => "2014-04-12 10:00", :end => "2014-04-12 12:00", :title => "Meeting With Me", :description => "Meeting about nothing...:D")
+```ruby
+result = cal.create_event(start: '2014-04-12 10:00', end: '2014-04-12 12:00', title: 'Meeting With Me', description: 'Meeting about nothing...:D')
+```
