@@ -120,8 +120,6 @@ module TwistedCaldav
       dtend = Time.public_send(date_method, event[:end]).utc.strftime('%Y%m%dT%H%M%S')
 
       cal_event = c.event do |e|
-        # e.dtstart = Icalendar::Values::DateOrDateTime.new(event[:start]).call
-        # e.dtend = Icalendar::Values::DateOrDateTime.new(event[:end]).call
         e.dtstart = Icalendar::Values::DateOrDateTime.new(dtstart).call
         e.dtend = Icalendar::Values::DateOrDateTime.new(dtend).call
         e.categories = event[:categories] # Array
