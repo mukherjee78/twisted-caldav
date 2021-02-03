@@ -129,6 +129,7 @@ module TwistedCaldav
         e.summary = event[:title]
         e.description = event[:description]
         e.ip_class = event[:ip_class] # PUBLIC, PRIVATE, CONFIDENTIAL
+        e.transp = event[:transp] # OPAQUE (busy, by default) or TRANSPARENT (free)
         e.location = event[:location]
         e.geo = event[:geo_location]
         e.status = event[:status]
