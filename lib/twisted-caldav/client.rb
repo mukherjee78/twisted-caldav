@@ -114,14 +114,9 @@ module TwistedCaldav
     def create_event(event)
       c = Icalendar::Calendar.new
 
-      date_method = event[:start].is_a?(Integer) ? 'at' : 'parse'
-
-      dtstart = Time.public_send(date_method, event[:start]).utc.strftime('%Y%m%dT%H%M%S')
-      dtend = Time.public_send(date_method, event[:end]).utc.strftime('%Y%m%dT%H%M%S')
-
       cal_event = c.event do |e|
-        e.dtstart = Icalendar::Values::DateOrDateTime.new(dtstart).call
-        e.dtend = Icalendar::Values::DateOrDateTime.new(dtend).call
+        e.dtstart = Icalendar::Values::DateOrDateTime.new(datetime_format(event[:start])).call
+        e.dtend = Icalendar::Values::DateOrDateTime.new(datetime_format(event[:end])).call
         e.categories = event[:categories] # Array
         e.contact = event[:contacts] # Array
         e.attendee = event[:attendees] # Array
@@ -221,6 +216,17 @@ module TwistedCaldav
       else
         true
       end
+    end
+
+    def datetime_format(value)
+      if value.is_a?(String)
+        datetime_format_ok = value.match?(/\d{8}T\d{6}/)
+        return value if datetime_format_ok
+      end
+
+      date = value.is_a?(Integer) ? Time.at(value) : Time.parse(value)
+
+      date.utc.strftime('%Y%m%dT%H%M%S')
     end
 
     def errorhandling(response)

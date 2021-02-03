@@ -25,6 +25,18 @@ describe TwistedCaldav::Client do
     expect(@c.class.to_s).to eq('TwistedCaldav::Client')
   end
 
+  it 'check datetime_format with timezone' do
+    expect(@c.send(:datetime_format, '20130102T161119Z')).to eq('20130102T161119Z')
+  end
+
+  it 'check datetime_format without timezone' do
+    expect(@c.send(:datetime_format, '20130102T161119')).to eq('20130102T161119')
+  end
+
+  it 'check datetime_format with timestamp' do
+    expect(@c.send(:datetime_format, 1609462861)).to eq('20210101T010101')
+  end
+
   it 'create one event' do
     uid = UUID.new.generate
     uri_template = Addressable::Template.new 'http://localhost:5232/user/calendar/{uid}.ics'
